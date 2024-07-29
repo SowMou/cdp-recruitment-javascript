@@ -1,0 +1,20 @@
+  name: Tests
+  on:
+    push:
+      branches:
+        - '**'
+  jobs:
+    test:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout project
+          uses: actions/checkout@v4
+        - name: Use node 20
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
+        - name: Installing dependencies
+          run: npm ci
+        - name: Running tests
+          run: npm run test:coverage
+
